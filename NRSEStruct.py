@@ -1,49 +1,83 @@
-from numpy import array, uint
+import numpy as np
+# from enum import Enum
 
-axisnum: uint = 6 + 3
+# class Param(Enum):
+#     robottype=0
+#     jogacc=1
+#     jogdec:2
+#     jogjerk=3
+#     jogstepvel=4
+#     ataxisacc=5
+#     ataxisdec=6
+#     ataxisjerk=7
+#     atlinemaxvel=8
+#     atposemaxvel=9
+#     atcoordacc=10
+#     atcoorddec=11
+#     atcoordjerk=12
+#     fisrtcycvel=13
+#     emergencysel=14
+#     craftsel=15
+#     enablesel=16
+#     alpha=17
+#     a=18
+#     d=19
+#     axisposlimit=20
+#     axisneglimit=21
+#     coordposlimit=22
+#     coordneglimit=23
+#     reductionratio=24
+#     axislead=25
+#     pulsepercir=26
+#     motortorque=27
+#     motormaxvel=28
+#     jogaxismaxvel=29
+#     jogcordmaxvel=30
+#     atextmaxvel=31
+
+axisnum: np.uint32 = 9
 fmt='I' + 'd'*7 + 'd'*7 + 'd'*7 + 'f'*9 + 'f'*9 + 'f'*9 +\
     'f'*9 + 'f'*9 + 'f'*9 + 'd'*9 + 'd'*9 + 'f'*9 + 'f'*9 +\
     'f'*9 + 'H' + 'H' + 'H' + 'H' + 'H' + 'H' + 'H' + 'H' +\
     'f' + 'f' + 'f'*3 + 'H' + 'H' + 'H' + 'H' + 'H' + 'H' + 'H'
 
 class Struct:
-    def __init__(self):
-        self.robottype: uint = 0
-        self.alpha = array([0] * 6, 'd')
-        self.a = array([0] * 6, 'd')
-        self.d = array([0] * 6, 'd')
+    robottype: np.uint32 = 0
+    alpha = np.array([0] * 6, np.float64)
+    a = np.array([0] * 6, np.float64)
+    d = np.array([0] * 6, np.float64)
 
-        self.axisposlimit = array([90] * axisnum, 'f')
-        self.axisneglimit = array([-90] * axisnum, 'f')
-        self.coordposlimit = array([9999] * axisnum, 'f')
-        self.coordneglimit = array([-9999] * axisnum, 'f')
-        self.reductionratio = array([1] * axisnum, 'f')
-        self.axislead = array([360] * axisnum, 'f')
+    axisposlimit = np.array([90] * axisnum, np.float32)
+    axisneglimit = np.array([-90] * axisnum, np.float32)
+    coordposlimit = np.array([9999] * axisnum, np.float32)
+    coordneglimit = np.array([-9999] * axisnum, np.float32)
+    reductionratio = np.array([1] * axisnum, np.float32)
+    axislead = np.array([360] * axisnum, np.float32)
 
-        self.pulsepercir = array([131072] * axisnum, 'f')
-        self.motortorque = array([0.32] * axisnum, 'f')
-        self.motormaxvel = array([3000] * axisnum, 'f')
+    pulsepercir = np.array([131072] * axisnum, np.float64)
+    motortorque = np.array([0.32] * axisnum, np.float64)
+    motormaxvel = np.array([3000] * axisnum, np.float32)
 
-        self.jogaxismaxvel = array([60] * 3 + [120] * 3 + [60] * 3, 'f')
-        self.jogcordmaxvel = array([100] * axisnum, 'f')
-        self.jogacc: uint = 5
-        self.jogdec: uint = 5
-        self.jogjerk: uint = 8
-        self.jogstepvel: uint = 30
+    jogaxismaxvel = np.array([60] * 3 + [120] * 3 + [60] * 3, np.float32)
+    jogcordmaxvel = np.array([100] * axisnum, np.float32)
+    jogacc: np.uint32 = 5
+    jogdec: np.uint32 = 5
+    jogjerk: np.uint32 = 8
+    jogstepvel: np.uint32 = 30
 
-        self.ataxisacc: uint = 5
-        self.ataxisdec: uint = 5
-        self.ataxisjerk: uint = 5
-        self.atlinemaxvel: float = 2000
-        self.atposemaxvel: float = 360
-        self.atextmaxvel = array([360] * 3, 'f')
-        self.atcoordacc: uint = 5
-        self.atcoorddec: uint = 5
-        self.atcoordjerk: uint = 5
-        self.fisrtcycvel: int = 10
-        self.emergencysel: int = 0
-        self.craftsel: int = 0
-        self.enablesel: int = 0
+    ataxisacc: np.uint32 = 5
+    ataxisdec: np.uint32 = 5
+    ataxisjerk: np.uint32 = 5
+    atlinemaxvel: np.float32 = 2000
+    atposemaxvel: np.float32 = 360
+    atextmaxvel = np.array([360] * 3, np.float32)
+    atcoordacc: np.uint32 = 5
+    atcoorddec: np.uint32 = 5
+    atcoordjerk: np.uint32 = 5
+    fisrtcycvel: np.int32 = 10
+    emergencysel: np.int32 = 0
+    craftsel: np.int32 = 0
+    enablesel: np.int32 = 0
 
 # datastruct=Struct(fmt)
 # packed=datastruct.pack(robottype, alpha[:], a[:], d[:],\
