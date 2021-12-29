@@ -591,15 +591,15 @@ class App(tk.Frame):
         self.fun.data.ataxisacc = np.uint(self.text106.get())
         self.fun.data.ataxisdec = np.uint(self.text107.get())
         self.fun.data.ataxisjerk = np.uint(self.text108.get())
-        self.fun.data.atlinemaxvel = np.float32(self.text109.get())
-        self.fun.data.atposemaxvel = np.float32(self.text110.get())
+        self.fun.data.atlinemaxvel = float(self.text109.get())
+        self.fun.data.atposemaxvel = float(self.text110.get())
         self.fun.data.atcoordacc = np.uint(self.text111.get())
         self.fun.data.atcoorddec = np.uint(self.text112.get())
         self.fun.data.atcoordjerk = np.uint(self.text113.get())
-        self.fun.data.fisrtcycvel = np.int32(self.text114.get())
-        self.fun.data.emergencysel = np.int32(self.text115.get())
-        self.fun.data.craftsel = np.int32(self.text116.get())
-        self.fun.data.enablesel = np.int32(self.text117.get())
+        self.fun.data.fisrtcycvel = int(self.text114.get())
+        self.fun.data.emergencysel = int(self.text115.get())
+        self.fun.data.craftsel = int(self.text116.get())
+        self.fun.data.enablesel = int(self.text117.get())
         self.fun.data.alpha = np.array(self.text201.get().split('; ')).astype(
             np.float64)
         self.fun.data.a = np.array(self.text202.get().split('; ')).astype(
@@ -607,29 +607,29 @@ class App(tk.Frame):
         self.fun.data.d = np.array(self.text203.get().split('; ')).astype(
             np.float64)
         self.fun.data.axisposlimit = np.array(
-            self.text204.get().split('; ')).astype(np.float32)
+            self.text204.get().split('; ')).astype(float)
         self.fun.data.axisneglimit = np.array(
-            self.text205.get().split('; ')).astype(np.float32)
+            self.text205.get().split('; ')).astype(float)
         self.fun.data.coordposlimit = np.array(
-            self.text206.get().split('; ')).astype(np.float32)
+            self.text206.get().split('; ')).astype(float)
         self.fun.data.coordneglimit = np.array(
-            self.text207.get().split('; ')).astype(np.float32)
+            self.text207.get().split('; ')).astype(float)
         self.fun.data.reductionratio = np.array(
-            self.text208.get().split('; ')).astype(np.float32)
+            self.text208.get().split('; ')).astype(float)
         self.fun.data.axislead = np.array(
-            self.text209.get().split('; ')).astype(np.float32)
+            self.text209.get().split('; ')).astype(float)
         self.fun.data.pulsepercir = np.array(
-            self.text210.get().split('; ')).astype(np.float64)
+            self.text210.get().split('; ')).astype(float)
         self.fun.data.motortorque = np.array(
-            self.text211.get().split('; ')).astype(np.float64)
+            self.text211.get().split('; ')).astype(float)
         self.fun.data.motormaxvel = np.array(
-            self.text212.get().split('; ')).astype(np.float32)
+            self.text212.get().split('; ')).astype(float)
         self.fun.data.jogaxismaxvel = np.array(
-            self.text213.get().split('; ')).astype(np.float32)
+            self.text213.get().split('; ')).astype(float)
         self.fun.data.jogcordmaxvel = np.array(
-            self.text214.get().split('; ')).astype(np.float32)
+            self.text214.get().split('; ')).astype(float)
         self.fun.data.atextmaxvel = np.array(
-            self.text215.get().split('; ')).astype(np.float32)
+            self.text215.get().split('; ')).astype(float)
         return
 
     def dataclr(self):
@@ -669,7 +669,8 @@ class App(tk.Frame):
 
     def filenew(self):
         self.dataclr()
-        self.fun.file=os.path.join(os.path.expanduser('~'),"Desktop").replace('\\','/')
+        self.fun.file = os.path.join(os.path.expanduser('~'),
+                                     "Desktop").replace('\\', '/')
         self.labellog["text"] = 'start a better one'
         return
 
@@ -713,9 +714,9 @@ class App(tk.Frame):
                                             filetypes=[('text', '*.txt')])
         if file == '':
             return
-        if file[-4] !='.txt':
-            file+='.txt'
-        
+        if file[-4:] != '.txt':
+            file += '.txt'
+
         try:
             self.dataget()
         except:
@@ -753,7 +754,7 @@ class App(tk.Frame):
             '全称：Naiwei Robot Sysparam Editor\r\n' \
             '功能：实现对耐为控制器系统参数文件的编辑 \r\n' \
             '语言：Python 3.9.6 \r\n' \
-            '版本：0.1 \r\n' \
+            '版本：1.0 \r\n' \
             '日期：2021-12-29 \r\n' \
             '\r\n' \
             '作者：王同辉\r\n' \
@@ -762,9 +763,10 @@ class App(tk.Frame):
         messagebox.showinfo(title='关于', message=info)
         return
 
+
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("NRSE V0.1")
+    root.title("NRSE")
     width = 1000
     height = 700
     screenwidth = root.winfo_screenwidth()
